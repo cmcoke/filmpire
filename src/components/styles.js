@@ -1,4 +1,4 @@
-// this file is responsible for creating material ui css stylesheet
+// this file is responsible for creating material ui css stylesheet for the App.js
 
 import { makeStyles } from "@mui/styles";
 
