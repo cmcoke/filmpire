@@ -21,13 +21,16 @@ export const tmdbApi = createApi({
   reducerPath: "tmdbApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
   endpoints: builder => ({
-    // get movies by [type]
+    // get movie geners
+    getGeners: builder.query({
+      query: () => `genre/movie/list?api_key=${tmdbApiKey}`
+    }),
+
+    // get popular movies
     getMovies: builder.query({
-      query: () => {
-        return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
-      }
+      query: () => `movie/popular?page=${page}&api_key=${tmdbApiKey}`
     })
   })
 });
 
-export const { useGetMoviesQuery } = tmdbApi; // this is the hook that redux creates in order to use getMovies which is used to make a request to TMDB for popular movies
+export const { useGetMoviesQuery, useGetGenersQuery } = tmdbApi; // this are the hook that redux toolkit creates in order to use them in other components
