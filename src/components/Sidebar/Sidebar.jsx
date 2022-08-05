@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'
 
 const Sidebar = ({ setMobileOpen }) => {
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory) // retrieves data from the redux slice called 'genreOrCategory' from the 'currentGenreOrCategory.js' file in the features folder
+  // console.log(genreIdOrCategoryName) // shows the name of the categories & id number of the different genres 
   const { data, isFetching } = useGetGenersQuery()
   // console.log(data); // shows the various genres
   const dispatch = useDispatch()

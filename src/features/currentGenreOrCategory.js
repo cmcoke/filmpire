@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const genreOrCategory = createSlice({
   name: "genreOrCategory",
   initialState: {
-    genreOrCategoryName: "",
+    genreIdOrCategoryName: "",
     page: 1,
     searchQuery: ""
   },
   reducers: {
     selectGenreOrCategory: (state, action) => {
-      console.log(action.payload);
-      // state.genreOrCategoryName = action.payload // the genre or category link that was clicked
+      // console.log(action.payload);
+      state.genreIdOrCategoryName = action.payload; // saves a specific category/genre to the redux store
     }
   }
 });

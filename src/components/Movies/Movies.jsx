@@ -3,13 +3,13 @@ import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material'
 import { useSelector } from "react-redux";
 import { useGetMoviesQuery } from "../../services/TMDB";
 import { MovieList } from "..";
-
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'
 
 
 const Movies = () => {
-
-  const { data, error, isFetching } = useGetMoviesQuery()
-  // console.log(data);
+  const [page, setPage] = useState(1) // refers to the page number
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory) // retrieves data from the redux slice called 'genreIdOrCategoryName' from the 'currentGenreOrCategory.js' file in the features folder
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page }) // getting the data from genreIdOrCategoryName and the state 'page' in lines 10
 
   // becuase the fetching of data is not instantley, redux's 'isFetching' can be used  to act a loading state when the data is being fetch from TMDB server
   if (isFetching) {
