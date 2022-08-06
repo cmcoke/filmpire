@@ -42,14 +42,19 @@ export const tmdbApi = createApi({
 
         // get movies by genre
         if (genreIdOrCategoryName && typeof genreIdOrCategoryName === "number") {
-          return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&include_adult=true&api_key=${tmdbApiKey}`;
+          return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
         }
 
         // get popular movies
         return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
       }
+    }),
+
+    //* get a specific movie
+    getMovie: builder.query({
+      query: id => `/movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`
     })
   })
 });
 
-export const { useGetMoviesQuery, useGetGenersQuery } = tmdbApi; // this are the hook that redux toolkit creates in order to use them in other components
+export const { useGetGenersQuery, useGetMoviesQuery, useGetMovieQuery } = tmdbApi; // this are the hook that redux toolkit creates in order to use them in other components
