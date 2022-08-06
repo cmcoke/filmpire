@@ -53,8 +53,13 @@ export const tmdbApi = createApi({
     //* get a specific movie
     getMovie: builder.query({
       query: id => `/movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`
+    }),
+
+    // get movie recommendations
+    getRecommendations: builder.query({
+      query: ({ movie_id, list }) => `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`
     })
   })
 });
 
-export const { useGetGenersQuery, useGetMoviesQuery, useGetMovieQuery } = tmdbApi; // this are the hook that redux toolkit creates in order to use them in other components
+export const { useGetGenersQuery, useGetMoviesQuery, useGetMovieQuery, useGetRecommendationsQuery } = tmdbApi; // this are the hook that redux toolkit creates in order to use them in other components
