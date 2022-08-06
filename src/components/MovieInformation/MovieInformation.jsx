@@ -17,7 +17,7 @@ const MovieInformation = () => {
   const { data, isFetching, error } = useGetMovieQuery(id); // uses the specific movie id to gets it's data and also is isFetching & error objects
   // console.log(data); // shows an object that contain information (title, release date, tagline, etc) about a movie
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // refers to if the modal for the movie trailer is open
 
   const [isMovieFavorited, setIsMovieFavorited] = useState(false);
   const [isMovieWatchlisted, setIsMovieWatchlisted] = useState(false);
@@ -189,6 +189,25 @@ const MovieInformation = () => {
           ? <MovieList movies={recommendations} numberOfMovies={12} />
           : <Box>Sorry, nothing was found.</Box>}
       </Box>
+
+      {/* movie trailer */}
+      <Modal
+        closeAfterTransition
+        className={classes.modal}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        {data?.videos?.results?.length > 0 && (
+          <iframe
+            autoPlay
+            className={classes.video}
+            frameBorder="0"
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
+        )}
+      </Modal>
 
     </Grid>
   )
