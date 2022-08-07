@@ -10,12 +10,15 @@ const Search = () => {
   const classes = useStyles();
   const [query, setQuery] = useState('')
   const dispatch = useDispatch()
+  const location = useLocation();
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       dispatch(searchMovie(query))
     }
   }
+
+  if (location.pathname !== '/') return null; // don't show the search bar if not on home page
 
   return (
     <div className={classes.searchContainer}>
