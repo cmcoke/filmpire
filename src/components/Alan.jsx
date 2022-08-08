@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import alanBtn from '@alan-ai/alan-sdk-web';
 import { fetchToken } from '../utils';
 import { ColorModeContext } from '../utils/ToggleColorMode';

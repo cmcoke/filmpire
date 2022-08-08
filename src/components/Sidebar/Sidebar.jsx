@@ -25,6 +25,11 @@ const Sidebar = ({ setMobileOpen }) => {
     { label: 'Upcoming', value: 'upcoming' }
   ]
 
+  // close the sidebar menu when clicking on a link on mobile screens
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
+
   return (
     <>
       <Link to='/' className={classes.imageLink}>
