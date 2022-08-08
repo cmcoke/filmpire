@@ -5,17 +5,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
-import { createTheme, ThemeProvider } from "@mui/material/styles"; // in order to use material ui
-const theme = createTheme({});
+import ToggleColorModeProvider from "./utils/ToggleColorMode"; // allows toggling light or dark mode of the app
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <ToggleColorModeProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </ThemeProvider>
+    </ToggleColorModeProvider>
   </Provider>
 );
 

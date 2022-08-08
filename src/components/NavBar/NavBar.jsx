@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from "@mui/material";
 import { Menu, AccountCircle, Brightness4, Brightness7 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
@@ -8,7 +8,7 @@ import { Sidebar, Search } from '..'
 import { fetchToken, createSessionId, moviesApi } from "../../utils";
 import { setUser, userSelector } from '../../features/auth';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 
 const NavBar = () => {
   const { isAuthenticated, user } = useSelector(userSelector);
@@ -17,7 +17,7 @@ const NavBar = () => {
   const isMobile = useMediaQuery('(max-width:600px)'); // defines that if the screen is larger than 600px it is no longer mobile device.
   const theme = useTheme(); // use to determine if we are in light or dark mode.
   const dispatch = useDispatch();
-
+  const colorMode = useContext(ColorModeContext);
 
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
@@ -54,7 +54,7 @@ const NavBar = () => {
             </IconButton>
           )}
           {/* toggle used to change to the light or dark mode of the app */}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => { }}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={colorMode.toggleColorMode}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {/* if not on a mobile screen show the search component */}
