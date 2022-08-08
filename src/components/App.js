@@ -1,11 +1,14 @@
 import { CssBaseline } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Actors, MovieInformation, Movies, NavBar, Profile } from "./"; // the stated components are imported from the index.js file that is located in the components folder
 import useStyles from "./styles"; // import css styles from the styles.js file in the component folder
+import useAlan from "./Alan";
 
 const App = () => {
   const classes = useStyles();
+  const alanBtnContainer = useRef();
+  useAlan();
 
   return (
     <div className={classes.root}>
@@ -28,6 +31,7 @@ const App = () => {
           </Route>
         </Switch>
       </main>
+      <div ref={alanBtnContainer} />
     </div>
   );
 };
